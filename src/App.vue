@@ -8,14 +8,35 @@
         <li class="nav-item">
           <router-link to="/products" class="nav-link">All Products</router-link>
         </li>
-        <li class="nav-items">
+        <li class="nav-item">
           <router-link to="/about" class="nav-link">About</router-link>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <router-link to="/about" class="nav-link"><i class="fa fa-shopping-cart mr-1"><span class="ml-1">{{this.cartProducts.length}}</span></i> Cart</router-link>
         </li>
       </ul>
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  data() {
+    return {
+      cartValue: 0
+    };
+  },
+  computed: mapState(["cartProducts"]),
+  methods: {},
+  mounted() {}
+};
+</script>
+
 
 <style lang="scss">
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";

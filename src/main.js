@@ -26,6 +26,9 @@ router.afterEach(() => {
 })
 
 
+
+
+
 new Vue({
   router,
   store,

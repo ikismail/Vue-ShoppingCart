@@ -11,7 +11,10 @@
                                 <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-muted">9 mins</small>
+                                <small class="text-muted footerIcons">
+                                    <a href="javascript:;;" class="p-2"><i class="fa fa-heart"></i></a>
+                                    <a href="javascript:;;" class="p-2" v-on:click="addProduct(item)"><i class="fa fa-shopping-cart"></i></a>
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -22,13 +25,22 @@
 
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   name: "productslist",
-  computed: mapState(["products"])
+  computed: mapState(["products"]),
+  methods: {
+    ...mapMutations(["ADD_CART_LOCAL"]),
+    addProduct: function(product) {
+      console.log(product);
+      this.ADD_CART_LOCAL(product);
+    }
+  }
 };
 </script>
 
-<style lang="sass">
-
+<style>
+.footerIcons {
+  font-size: 95%;
+}
 </style>
