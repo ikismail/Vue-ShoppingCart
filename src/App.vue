@@ -16,6 +16,9 @@
         <li class="nav-item">
           <router-link to="/about" class="nav-link"><i class="fa fa-shopping-cart mr-1"><span class="ml-1">{{this.cartProducts.length}}</span></i> Cart</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/login" class="nav-link"> Login</router-link>
+        </li>
       </ul>
     </nav>
     <router-view/>
