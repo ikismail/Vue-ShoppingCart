@@ -25,8 +25,8 @@
         <router-view/>
       </main>
 
-    <footer class="container-fluid footer">
-    <p>Developed by: <strong>Mohammed Ismail</strong>
+    <footer class="container-fluid footer text-left">
+    <p class="mr-auto">Developed by: <strong>Mohammed Ismail</strong>
     </p>
     <div style="float:right">
       <a href="mailto:ikismail7@gmail.com" style="margin-right:10px">
