@@ -1,6 +1,5 @@
 <template>
     <div class="login">
-
         <div class="row">
             <div class="col">
                 <form class="form-signin" @submit.prevent="login">
@@ -17,8 +16,6 @@
                 <createAccount></createAccount>
             </div>
         </div>
-         
-
     </div>    
 </template>
 <script>

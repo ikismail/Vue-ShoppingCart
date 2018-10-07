@@ -3,12 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
-import VueAwesomeSwiper from "vue-awesome-swiper";
-import NProgress from "nprogress";
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import NProgress from 'nprogress'
 
 // require styles
 import 'swiper/dist/css/swiper.css'
-import "../node_modules/nprogress/nprogress.css";
+import '../node_modules/nprogress/nprogress.css'
 
 Vue.use(VueAwesomeSwiper)
 
@@ -24,11 +24,6 @@ router.beforeResolve((to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 })
-
-
-
-
-
 new Vue({
   router,
   store,
