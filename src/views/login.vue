@@ -31,12 +31,13 @@ export default {
     };
   },
   methods: {
-    //   Login function usign email and password
+    //  Login function usign email and password
     login(event) {
-        this.showLoader = true;
+      this.showLoader = true;
       console.log(this.email, this.password);
       event.target.reset();
-       this.showLoader = false;
+      this.$router.push({ path: "/" });
+      this.showLoader = false;
     }
   }
 };
