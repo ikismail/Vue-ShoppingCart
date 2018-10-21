@@ -1,11 +1,12 @@
 <template>
     <div class="products">
            <div class="row">
-                <div class="col-md-4" v-for="(item, index) in products" :key="index">
+                <div class="col-md-4" v-for="(item, index) in products_list" :key="index">
                     <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="https://via.placeholder.com/225x120" alt="Card image cap">
+                        <img class="card-img-top" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 700px; max-width: 127.135px;margin: auto">
                         <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-text">{{item.productName}}.</h5>
+                            <p class="card-text">{{item.productDescription}}.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -26,15 +27,32 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
+import axios from "axios";
 export default {
   name: "productslist",
-  computed: mapState(["products"]),
+  data() {
+    return {
+      products_list: []
+    };
+  },
   methods: {
-    ...mapMutations(["ADD_CART_LOCAL"]),
-    addProduct: function(product) {
-      console.log(product);
-      this.ADD_CART_LOCAL(product);
+    getAllProducts() {
+      axios
+        .get("http://localhost:8080/api/products")
+        .then(response => {
+          console.log("Products", response);
+          this.products_list = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    addProduct(product) {
+      console.log("Adding Product", product);
     }
+  },
+  mounted() {
+    this.getAllProducts();
   }
 };
 </script>
@@ -42,5 +60,13 @@ export default {
 <style>
 .footerIcons {
   font-size: 95%;
+}
+
+.card {
+  height: 490px;
+}
+.card-text {
+  height: 70px;
+  overflow: hidden;
 }
 </style>
