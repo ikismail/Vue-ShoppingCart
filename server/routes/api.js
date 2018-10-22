@@ -112,14 +112,6 @@ router.route('/users/:user_id')
 
 
 /*
-  API for User Authentication
-  User Login and Logout
-*/
-
-
-
-
-/*
   API for Product Schema
   Product Create and Read all Policies API 's
 
@@ -160,6 +152,32 @@ router.route('/products')
         })
     })
 
+router.route('/best/products/')
+    .get(function (req, res) {
+        ProductModel.find({
+                isBestProduct: true
+            },
+            function (err, product) {
+                if (err) {
+                    res.send(err)
+                }
+                console.log('data', product)
+                res.json(product)
+            }).limit(4)
+    })
+
+router.route('/top/products/')
+    .get(function (req, res) {
+        ProductModel.find({
+            isTopProduct: true
+        }, function (err, product) {
+            if (err) {
+                res.send(err)
+            }
+            console.log('data', product)
+            res.json(product)
+        }).limit(4)
+    })
 /*  ProductModel Update and Read by Id and delete products API's */
 // on routes that end in /products/:product_id
 // ----------------------------------------------------
