@@ -2,18 +2,19 @@
     <div class="login">
         <div class="row">
             <div class="col">
+                <createAccount></createAccount>
+            </div>
+            <div class="col">
                 <form class="form-signin" @submit.prevent="login">
-                    <img class="mb-4" src="../assets/logo.png" alt="" width="72" height="72">
+                    <img class="mb-4" src="../assets/login-img.png" alt="" width="72" height="72">
                     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <label for="email" class="sr-only" >Email address</label>
                     <input type="email" id="email" class="form-control" v-model="email" placeholder="Email address" required autocomplete="email">
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" id="password" v-model="password" class="form-control" placeholder="Password" required autocomplete="current-password">
                     <button class="btn btn-lg btn-primary btn-block" type="submit" > <i class="fa fa-spinner fa-spin mr-1" v-if="showLoader"></i> Log In</button>
+                    <p class="mt-5 mb-3 text-muted"><a href="javascript:;;">Forget password ?</a></p>
                 </form>
-            </div>
-            <div class="col">
-                <createAccount></createAccount>
             </div>
         </div>
     </div>    

@@ -3,9 +3,9 @@
            <div class="row">
                 <div class="col-md-4" v-for="(item, index) in products_list" :key="index">
                     <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 700px; max-width: 127.135px;margin: auto">
+                        <img class="card-img-top mt-2" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 700px; max-width: 127.135px;margin: auto">
                         <div class="card-body">
-                            <h5 class="card-text">{{item.productName}}.</h5>
+                            <h6 class="card-text">{{item.productName}}.</h6>
                             <p class="card-text">{{item.productDescription}}.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">

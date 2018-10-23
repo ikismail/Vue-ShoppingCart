@@ -3,8 +3,8 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <img alt="Vue logo" src="../assets/logo.png">
-          <h1 class="display-4">ikismail - VueShop</h1>
+          <img alt="Vue logo" src="../assets/logo.png" width="100px">
+          <h3 class="display-5 "><span style="color:#42b983">ikismail - VueShop</span></h3>
           <p class="lead">A ShoppingCart (Ecommerce) Application using Vue.js.</p>
         </div>
     </div>
@@ -40,3 +40,8 @@ export default {
   }
 };
 </script>
+<style>
+.jumbotron {
+  padding: 1rem 0rem;
+}
+</style>

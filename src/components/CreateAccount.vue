@@ -34,7 +34,6 @@
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit"> <i class="fa fa-spinner fa-spin mr-1" v-if="showLoader"></i>Sign Up</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
         </form>    
     </div>    
 </template>
@@ -54,7 +53,7 @@ export default {
   },
   methods: {
     createAccount() {
-        this.showLoader = true;
+      this.showLoader = true;
       console.log(this.user);
     }
   }
