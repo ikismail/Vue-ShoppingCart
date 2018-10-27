@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3" v-for="(item, index) in topProducts" :key="index">
                     <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 700px; max-width: 127.135px;margin: auto">
+                        <img class="card-img-top mt-2" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 700px; max-width: 127.135px;margin: auto">
                         <div class="card-body">
                             <h6 class="card-text">{{item.productName}}.</h6>
                             <p class="card-text">{{item.productDescription}}.</p>
@@ -26,6 +26,7 @@
 
 <script>
 import axios from "axios";
+import toastr from "toastr";
 export default {
   name: "TopProducts",
   data() {
@@ -42,7 +43,10 @@ export default {
           this.topProducts = response.data;
         })
         .catch(error => {
-          console.log(error);
+          toastr.error(
+            "The server encountered an unexpected condition.",
+            "Internal Error 500"
+          );
         });
     }
   },

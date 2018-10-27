@@ -4,6 +4,9 @@
       <nav class="navbar navbar-expand-sm bg-light mb-4" id="nav">
           <ul class="navbar-nav">
             <li class="nav-item">
+              <img alt="Vue logo" src="./assets/logo.png" width="50px">
+            </li>
+            <li class="nav-item">
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
@@ -96,18 +99,23 @@ body {
 }
 
 footer {
-    background-color: #f2f2f2;
-    padding: 25px;
-  }
-  
-.footer p, .footer div {
-    display: inline;
-    vertical-align: top;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 28px;
-  }
-  .footer p {
-    font-weight: bold;
-  }
+  background-color: #f2f2f2;
+  padding: 25px;
+}
+
+.footer p,
+.footer div {
+  display: inline;
+  vertical-align: top;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 28px;
+}
+.footer p {
+  font-weight: bold;
+}
+
+* a {
+  color: #42b983;
+}
 </style>
