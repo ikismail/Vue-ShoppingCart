@@ -1,54 +1,63 @@
 <template>
     <div class="top-products">
         <div class="row">
-            <div class="col-12">
-                <div class="d-flex bd-highlight">
-                    <swiper :options="swiperOption">
-                        <swiper-slide v-for="(item, index) in products" :key="index">
-                            <div class="p-2 flex-fill bd-highlight" >
-                                <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 18rem; padding:10px" >
-                                    <img class="card-img-top" src="https://via.placeholder.com/180x100" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <a href="javascript:;;" class="btn btn-primary">Go somewhere</a>
-                                    </div>
+            <div class="col-md-3" v-for="(item, index) in topProducts" :key="index">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 700px; max-width: 127.135px;margin: auto">
+                        <div class="card-body">
+                            <h6 class="card-text">{{item.productName}}.</h6>
+                            <p class="card-text">{{item.productDescription}}.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
+                                <small class="text-muted footerIcons">
+                                    <a href="javascript:;;" class="p-2"><i class="fa fa-heart"></i></a>
+                                    <a href="javascript:;;" class="p-2" v-on:click="addProduct(item)"><i class="fa fa-shopping-cart"></i></a>
+                                </small>
                             </div>
-                        </swiper-slide>
-                        <div class="swiper-pagination" slot="pagination"></div>
-                    </swiper>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div> 
     </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
+import axios from "axios";
 export default {
   name: "TopProducts",
   data() {
     return {
-      swiperOption: {
-        slidesPerView: 3,
-        autoplay: {
-          delay: 4500
-        },
-        spaceBetween: -200,
-        freeMode: true,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        }
-      }
+      topProducts: []
     };
   },
-  computed: mapState(["products"])
+  methods: {
+    getTopProducts() {
+      axios
+        .get("http://localhost:8080/api/top/products")
+        .then(response => {
+          console.log("Products", response);
+          this.topProducts = response.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  mounted() {
+    this.getTopProducts();
+  }
 };
 </script>
 
 <style>
-
+.card {
+  height: 490px;
+}
+.card-text {
+  height: 70px;
+  overflow: hidden;
+}
 </style>
