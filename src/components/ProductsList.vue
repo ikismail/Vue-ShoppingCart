@@ -40,15 +40,15 @@ export default {
       axios
         .get("http://localhost:8080/api/products")
         .then(response => {
-          console.log("Products", response);
           this.products_list = response.data;
         })
         .catch(error => {
           console.log(error);
         });
     },
+    ...mapMutations(["ADD_CART_LOCAL"]),
     addProduct(product) {
-      console.log("Adding Product", product);
+      this.ADD_CART_LOCAL(product);
     }
   },
   mounted() {

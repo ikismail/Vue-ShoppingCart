@@ -39,7 +39,6 @@ export default {
       axios
         .get("http://localhost:8080/api/best/products")
         .then(response => {
-          console.log("Products", response);
           this.bestProducts = response.data;
         })
         .catch(error => {

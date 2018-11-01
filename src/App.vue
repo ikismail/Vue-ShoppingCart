@@ -18,7 +18,7 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <router-link to="/about" class="nav-link"><i class="fa fa-shopping-cart mr-1"><span class="ml-1">{{this.cartProducts.length}}</span></i> Cart</router-link>
+              <router-link to="/cart" class="nav-link"><i class="fa fa-shopping-cart mr-1"><span class="ml-1">{{this.cartProducts.length}}</span></i></router-link>
             </li>
             <li class="nav-item">
               <router-link to="/login" class="nav-link"> Login</router-link>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   data() {
@@ -56,8 +56,23 @@ export default {
     };
   },
   computed: mapState(["cartProducts"]),
-  methods: {},
-  mounted() {}
+  methods: {
+    /* Initially loading the cart products from local storage */
+    ...mapMutations(["SET_CART_PRODUCTS"]),
+    getLocalProducts() {
+      const products = JSON.parse(localStorage.getItem("iki-cart"));
+      this.SET_CART_PRODUCTS(products);
+    }
+  },
+  mounted() {
+    let recaptchaScript = document.createElement("script");
+    recaptchaScript.setAttribute(
+      "src",
+      "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    );
+    document.head.appendChild(recaptchaScript);
+    this.getLocalProducts();
+  }
 };
 </script>
 
@@ -117,5 +132,9 @@ footer {
 
 * a {
   color: #42b983;
+}
+
+* .fa {
+  font-size: 18px;
 }
 </style>
