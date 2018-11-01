@@ -34,6 +34,8 @@ export default {
   computed: mapState(["cartProducts"]),
   methods: {
     calulateTotalPrice() {
+      console.log("from parent");
+      this.totalValue = 0;
       this.cartProducts.forEach(product => {
         this.totalValue += parseFloat(product.productPrice.replace(",", ""));
       });

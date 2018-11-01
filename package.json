@@ -1,11 +1,13 @@
 {
   "name": "vue-shopping-cart",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "start": "node server.js",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "postinstall": "vue-cli-service build"
   },
   "dependencies": {
     "axios": "^0.18.0",
