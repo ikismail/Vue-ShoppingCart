@@ -38,7 +38,7 @@ export default {
   methods: {
     getAllProducts() {
       axios
-        .get("http://localhost:8080/api/products")
+        .get("https://vue-shop-cart.herokuapp.com/api/products")
         .then(response => {
           this.products_list = response.data;
         })
