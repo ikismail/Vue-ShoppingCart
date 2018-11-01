@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="col-4">
-              <cart-calculator></cart-calculator>
+              <cart-calculator ref="cartCalculator"></cart-calculator>
           </div>
         </div>
     </div>
@@ -52,6 +52,7 @@ export default {
       }
       this.SET_CART_PRODUCTS(products);
       localStorage.setItem("iki-cart", JSON.stringify(products));
+      this.$refs.cartCalculator.calulateTotalPrice();
     }
   },
   mounted() {}

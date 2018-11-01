@@ -15,7 +15,7 @@
           </ul>
           
           <div class="LI-profile-badge mt-5"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="ikismail7">
-            <a class="LI-simple-link" href='https://in.linkedin.com/in/ikismail7?trk=profile-badge' target="_blank"><i class="fa fa-linkedin" aria-hidden="true" style="font-size:20px"></i> Mohammed Ismail</a>
+            <a class="LI-simple-link" href='https://in.linkedin.com/in/ikismail7?trk=profile-badge'><i class="fa fa-linkedin" aria-hidden="true" style="font-size:20px"></i> Mohammed Ismail</a>
           </div>
 
         </div>
