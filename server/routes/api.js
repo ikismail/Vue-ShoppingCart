@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const mongodb = require('../mongo/config')
+const mongodb = require('../mongo/configDummy')
 
 const UserModel = require('../mongo/model/user')
 
