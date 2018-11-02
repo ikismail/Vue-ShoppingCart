@@ -61,11 +61,15 @@ export default {
     ...mapMutations(["SET_CART_PRODUCTS"]),
     getLocalProducts() {
       const products = JSON.parse(localStorage.getItem("iki-cart"));
-      this.SET_CART_PRODUCTS(products);
+
+      if (products) {
+        this.SET_CART_PRODUCTS(products);
+      }
     }
   },
   mounted() {
     let recaptchaScript = document.createElement("script");
+
     recaptchaScript.setAttribute(
       "src",
       "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
