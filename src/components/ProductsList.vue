@@ -9,7 +9,7 @@
                             <p class="card-text">{{item.productDescription}}.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">View</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted footerIcons">
@@ -19,17 +19,24 @@
                             </div>
                         </div>
                     </div>
+                     <product-modal product ="item" isEditable="false"></product-modal>
                 </div>
            </div>
+
+         
+
     </div>
+    
 </template>
 
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
+import ProductModal from "./ProductModal";
 import axios from "axios";
 export default {
   name: "productslist",
+  components: { ProductModal },
   data() {
     return {
       products_list: []

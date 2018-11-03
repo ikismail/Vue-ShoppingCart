@@ -68,13 +68,6 @@ export default {
     }
   },
   mounted() {
-    let recaptchaScript = document.createElement("script");
-
-    recaptchaScript.setAttribute(
-      "src",
-      "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-    );
-    document.head.appendChild(recaptchaScript);
     this.getLocalProducts();
   }
 };
