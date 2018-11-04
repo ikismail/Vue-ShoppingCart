@@ -9,22 +9,18 @@
                             <p class="card-text">{{item.productDescription}}.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary"   v-on:click="navigateProductDetail(item)">View</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted footerIcons">
                                     <a href="javascript:;;" class="p-2"><i class="fa fa-heart"></i></a>
-                                    <a href="javascript:;;" class="p-2" v-on:click="addProduct(item)"><i class="fa fa-shopping-cart"></i></a>
+                                    <a href="javascript:;;" class="p-2" v-on:click="addToCart(item)"><i class="fa fa-shopping-cart"></i></a>
                                 </small>
                             </div>
                         </div>
                     </div>
-                     <product-modal product ="item" isEditable="false"></product-modal>
                 </div>
            </div>
-
-         
-
     </div>
     
 </template>
@@ -32,14 +28,14 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import ProductModal from "./ProductModal";
 import axios from "axios";
 export default {
   name: "productslist",
-  components: { ProductModal },
+  components: {},
   data() {
     return {
-      products_list: []
+      products_list: [],
+      selectedProduct: Object
     };
   },
   methods: {
@@ -54,8 +50,12 @@ export default {
         });
     },
     ...mapMutations(["ADD_CART_LOCAL"]),
-    addProduct(product) {
+    addToCart(product) {
       this.ADD_CART_LOCAL(product);
+    },
+
+    navigateProductDetail(product) {
+      this.$router.push({ name: "productDetails", params: { id: product._id } });
     }
   },
   mounted() {

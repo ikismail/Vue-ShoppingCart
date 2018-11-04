@@ -9,7 +9,7 @@
                             <p class="card-text">{{item.productDescription}}.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" v-on:click="navigateProductDetail(item)">View</button>
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted footerIcons">
@@ -48,6 +48,12 @@ export default {
             "Internal Error 500"
           );
         });
+    },
+    navigateProductDetail(product) {
+      this.$router.push({
+        name: "productDetails",
+        params: { id: product._id }
+      });
     }
   },
   mounted() {
