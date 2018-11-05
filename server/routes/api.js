@@ -178,6 +178,19 @@ router.route('/top/products/')
             res.json(product)
         }).limit(4)
     })
+
+router.route('/products/similarProduct')
+    .get(function (req, res) {
+        ProductModel.find({
+            productSeller: req.query['productSeller']
+        }, function (err, product) {
+            if (err) {
+                res.send(err)
+            }
+            console.log('data', product)
+            res.json(product)
+        }).limit(4)
+    })
 /*  ProductModel Update and Read by Id and delete products API's */
 // on routes that end in /products/:product_id
 // ----------------------------------------------------
