@@ -22,7 +22,7 @@
               <span class="text-muted" style="color:crimson !important">{{product.productSeller}}</span>
             </li>
           </ul>
-          <button class="btn btn-primary" >Add to Cart</button>
+          <button class="btn btn-primary"  v-on:click="addToCart(product)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -42,6 +42,14 @@
             <tr>
               <th scope="row">Product Category</th>
               <td>{{product.productCategory}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Product Rating</th>
+              <td>
+               <div class="stars-outer">
+                  <div class="stars-inner"></div>
+               </div>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -80,6 +88,7 @@
 
 <script>
 import axios from "axios";
+import { mapState, mapActions, mapMutations } from "vuex";
 export default {
   name: "productDetail",
   data() {
@@ -100,6 +109,10 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    ...mapMutations(["ADD_CART_LOCAL"]),
+    addToCart(product) {
+      this.ADD_CART_LOCAL(product);
     }
   },
   mounted() {
@@ -107,6 +120,17 @@ export default {
       .get("http://localhost:8080/api/products/" + this.$route.params.id)
       .then(response => {
         this.product = response.data;
+        const starTotal = 5;
+        const starPercentage =
+          (Number(this.product.productRating) / starTotal) * 100;
+        // 3
+        const starPercentageRounded = `${Math.round(starPercentage / 10) *
+          10}%`;
+        // 4
+        document.querySelector(
+          `.stars-inner`
+        ).style.width = starPercentageRounded;
+
         this.getSimilarProduct(this.product.productSeller);
       })
       .catch(error => {
@@ -130,5 +154,29 @@ export default {
 
 .product-ship {
   height: 15rem;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
 }
 </style>
