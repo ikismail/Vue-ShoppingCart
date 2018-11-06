@@ -41,7 +41,7 @@ export default {
   methods: {
     getAllProducts() {
       axios
-        .get("http://localhost:8080/api/products")
+        .get(`${process.env.VUE_APP_BASE_URL}/products`)
         .then(response => {
           this.products_list = response.data;
         })
@@ -55,7 +55,10 @@ export default {
     },
 
     navigateProductDetail(product) {
-      this.$router.push({ name: "productDetails", params: { id: product._id } });
+      this.$router.push({
+        name: "productDetails",
+        params: { id: product._id }
+      });
     }
   },
   mounted() {

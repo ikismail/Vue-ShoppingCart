@@ -35,6 +35,8 @@ app.use((req, res, next) => {
     next();
 })
 
+
+
 app.use('/api', api)
 
 // Initialize the app.

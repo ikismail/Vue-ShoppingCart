@@ -37,7 +37,7 @@ export default {
   methods: {
     getBestProducts() {
       axios
-        .get("http://localhost:8080/api/best/products")
+        .get(`${process.env.VUE_APP_BASE_URL}/best/products`)
         .then(response => {
           this.bestProducts = response.data;
         })

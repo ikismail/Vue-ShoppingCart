@@ -100,7 +100,7 @@ export default {
   methods: {
     getSimilarProduct(productSeller) {
       axios
-        .get("http://localhost:8080/api/products/similarProduct", {
+        .get(`${process.env.VUE_APP_BASE_URL}/products/similarProduct`, {
           params: { productSeller: productSeller }
         })
         .then(response => {
@@ -117,7 +117,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8080/api/products/" + this.$route.params.id)
+      .get(`${process.env.VUE_APP_BASE_URL}/products/${this.$route.params.id}`)
       .then(response => {
         this.product = response.data;
         const starTotal = 5;

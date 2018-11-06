@@ -69,6 +69,8 @@ export default {
   },
   mounted() {
     this.getLocalProducts();
+    console.log(process.env.NODE_ENV);
+    console.log(process.env.VUE_APP_BASE_URL);
   }
 };
 </script>

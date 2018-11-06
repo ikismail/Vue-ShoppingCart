@@ -37,7 +37,7 @@ export default {
   methods: {
     getTopProducts() {
       axios
-        .get("http://localhost:8080/api/top/products")
+        .get(`${process.env.VUE_APP_BASE_URL}/top/products`)
         .then(response => {
           this.topProducts = response.data;
         })
