@@ -3,7 +3,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 // Get our API routes
+
+const mongodb = require('./server/mongo/config')
+
 const api = require('./server/routes/api')
+const productApi = require('./server/routes/productApi')
 
 const app = express()
 
@@ -37,7 +41,7 @@ app.use((req, res, next) => {
 
 
 
-app.use('/api', api)
+app.use('/api', [api, productApi])
 
 // Initialize the app.
 var server = app.listen(process.env.PORT || 8080, function () {
