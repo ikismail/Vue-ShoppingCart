@@ -96,7 +96,7 @@ router.route('/products/productCategories')
                 _id: "$productCategory"
             }
         }], (err, products) => {
-            if(err) {
+            if (err) {
                 res.send(err)
             }
 
@@ -106,11 +106,12 @@ router.route('/products/productCategories')
     })
 
 router.route('/products/productsByCategory')
-    .get((req, res)=> {
+    .get((req, res) => {
         ProductModel.find({
             productCategory: req.query['productCategory']
         }, (err, data) => {
-            if(err){
+            console.log("inside if")
+            if (err) {
                 res.send(err)
             }
             console.log('data', data)

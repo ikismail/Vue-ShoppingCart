@@ -31,24 +31,13 @@ import { mapState, mapActions, mapMutations } from "vuex";
 import axios from "axios";
 export default {
   name: "productslist",
-  components: {},
+  props: ["products_list"],
   data() {
     return {
-      products_list: [],
       selectedProduct: Object
     };
   },
   methods: {
-    getAllProducts() {
-      axios
-        .get(`${process.env.VUE_APP_BASE_URL}/products`)
-        .then(response => {
-          this.products_list = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     ...mapMutations(["ADD_CART_LOCAL"]),
     addToCart(product) {
       this.ADD_CART_LOCAL(product);
@@ -61,9 +50,7 @@ export default {
       });
     }
   },
-  mounted() {
-    this.getAllProducts();
-  }
+  mounted() {}
 };
 </script>
 
