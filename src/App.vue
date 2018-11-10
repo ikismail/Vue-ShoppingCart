@@ -28,7 +28,7 @@
         <router-view/>
       </main>
 
-    <footer class="container-fluid footer text-left">
+    <footer class="container-fluid footer text-left mt-3">
     <p class="mr-auto">Developed by: <strong>Mohammed Ismail</strong>
     </p>
     <div style="float:right">
