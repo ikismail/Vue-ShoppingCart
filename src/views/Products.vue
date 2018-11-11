@@ -4,7 +4,7 @@
         <div class="col-md-3 order-md-1 mb-4 filters">
 
           <h4 class="d-flex mb-3">
-            <span class="text-muted">Filters</span>
+            <span class="text-muted">Filters: </span>
           </h4>
           <form>
             <div class="form-group">

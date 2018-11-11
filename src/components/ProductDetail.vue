@@ -5,7 +5,10 @@
             <div class="col-sm-4">
               <div class="product-image">
                 <div class="view hm-zoom z-depth-2" style="cursor: pointer">
-                  <img v-bind:src="product.productImage" v-bind:alt="product.productName" class="img-fluid rounded" style="max-height: 700px; max-width: 127.135px;margin: auto">
+                  <img v-bind:src="product.productImage" 
+                  v-bind:alt="product.productName" 
+                  class="img-fluid rounded" 
+                  style="max-height: 700px; max-width: 127.135px;margin: auto">
                 </div>
                 <div class="" style="margin-top:15px">
                   <ul class="list-group mb-3">
@@ -13,16 +16,19 @@
                       <div>
                         <h6 class="my-0">Product Price</h6>
                       </div>
-                      <span class="text-muted" style="color:crimson !important">₹ {{product.productPrice}}</span>
+                      <span class="text-muted" 
+                      style="color:crimson !important">₹ {{product.productPrice}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                       <div>
                         <h6 class="my-0">Product Seller</h6>
                       </div>
-                      <span class="text-muted" style="color:crimson !important">{{product.productSeller}}</span>
+                      <span class="text-muted" 
+                      style="color:crimson !important">{{product.productSeller}}</span>
                     </li>
                   </ul>
-                  <button class="btn btn-primary"  v-on:click="addToCart(product)">Add to Cart</button>
+                  <button class="btn btn-primary"  
+                  v-on:click="addToCart(product)">Add to Cart</button>
                 </div>
               </div>
             </div>
@@ -63,24 +69,30 @@
             </nav>
           <div class="row">
             
-            <div class="col-md-3 mt-3" v-for="(item, index) in similarProduct" :key="index">
-                            <div class="card mb-4 shadow-sm" style="height: 400px">
-                                <img class="card-img-top mt-2" v-bind:src="item.productImage" alt="Card image cap" style="max-height: 500px; max-width: 127.135px;margin: auto">
-                                <div class="card-body">
-                                    <h6 class="card-text">{{item.productName}}.</h6>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"   v-on:click="navigateProductDetail(item)">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted footerIcons">
-                                            <a href="javascript:;;" class="p-2"><i class="fa fa-heart"></i></a>
-                                            <a href="javascript:;;" class="p-2" v-on:click="addToCart(item)"><i class="fa fa-shopping-cart"></i></a>
-                                        </small>
-                                    </div>
-                                </div>
+            <div class="col-md-3 mt-3" 
+            v-for="(item, index) in similarProduct" :key="index">
+                <div class="card mb-4 shadow-sm" style="height: 400px">
+                    <img class="card-img-top mt-2" 
+                    v-bind:src="item.productImage" 
+                    alt="Card image cap" 
+                    style="max-height: 500px; max-width: 127.135px;margin: auto">
+                    <div class="card-body">
+                        <h6 class="card-text">{{item.productName}}.</h6>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary"   
+                            v-on:click="navigateProductDetail(item)">View</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                             </div>
+                            <small class="text-muted footerIcons">
+                                <a href="javascript:;;" class="p-2"><i class="fa fa-heart"></i></a>
+                                <a href="javascript:;;" class="p-2" 
+                                v-on:click="addToCart(item)"><i class="fa fa-shopping-cart"></i></a>
+                            </small>
                         </div>
+                    </div>
+                </div>
+            </div>
           </div>
       </div>
     </div>
@@ -131,13 +143,12 @@ export default {
           `.stars-inner`
         ).style.width = starPercentageRounded;
 
+        // Getting Similar Product
         this.getSimilarProduct(this.product.productSeller);
       })
       .catch(error => {
         console.log(error);
       });
-
-    // Getting Similar Product
   }
 };
 </script>

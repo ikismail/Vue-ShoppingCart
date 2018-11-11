@@ -58,7 +58,9 @@ export default {
   computed: mapState(["cartProducts"]),
   methods: {
     /* Initially loading the cart products from local storage */
+    
     ...mapMutations(["SET_CART_PRODUCTS"]),
+
     getLocalProducts() {
       const products = JSON.parse(localStorage.getItem("iki-cart"));
 
