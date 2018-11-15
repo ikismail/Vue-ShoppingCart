@@ -28,7 +28,7 @@
         <router-view/>
       </main>
 
-    <footer class="container-fluid footer text-left">
+    <footer class="container-fluid footer text-left mt-3">
     <p class="mr-auto">Developed by: <strong>Mohammed Ismail</strong>
     </p>
     <div style="float:right">
@@ -58,7 +58,9 @@ export default {
   computed: mapState(["cartProducts"]),
   methods: {
     /* Initially loading the cart products from local storage */
+    
     ...mapMutations(["SET_CART_PRODUCTS"]),
+
     getLocalProducts() {
       const products = JSON.parse(localStorage.getItem("iki-cart"));
 
