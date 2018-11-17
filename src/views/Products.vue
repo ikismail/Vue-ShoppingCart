@@ -38,8 +38,8 @@
 
 
 <script>
-import ProductsList from "@/components/ProductsList.vue";
-import CardLoader from "@/components/shared/CardLoader.vue";
+import ProductsList from "@/components/products/ProductsList";
+import CardLoader from "@/components/shared/CardLoader";
 import axios from "axios";
 import _ from "lodash";
 
@@ -79,6 +79,7 @@ export default {
           console.log(error);
         });
     },
+    
     filterProductByCategory(event) {
       console.log(event.target.value);
       const productList = [...this.products_list];
@@ -100,7 +101,7 @@ export default {
     }
   },
 
-  mounted() {
+  created() {
     this.getAllProducts();
   }
 };

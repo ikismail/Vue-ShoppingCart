@@ -4,7 +4,7 @@
                 <div class="col-md-4" 
                 v-for="(item, index) in products_list" 
                 :key="index">
-                   <card-template :item="item"/>
+                   <card-template :item="item" />
                 </div>
            </div>
     </div>
@@ -13,19 +13,18 @@
 
 <script>
 import axios from "axios";
-import CardTemplate from "./shared/CardTemplate.vue";
+import CardTemplate from "../shared/CardTemplate";
+import EditProduct from "./actions/EditProduct"
 export default {
   name: "productslist",
   props: ["products_list"],
-  components: { CardTemplate },
+  components: { CardTemplate, EditProduct },
   data() {
     return {
       selectedProduct: Object
     };
   },
-  methods: {
-    
-  },
+  methods: {},
   mounted() {}
 };
 </script>

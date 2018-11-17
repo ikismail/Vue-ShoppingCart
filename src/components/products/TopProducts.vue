@@ -13,9 +13,9 @@
 
 <script>
 import axios from "axios";
-import { errorToaster } from "./shared/service/ErrorHandler.js";
-import CardLoader from "./shared/CardLoader.vue";
-import CardTemplate from "./shared/CardTemplate.vue";
+import { errorToaster } from "../shared/service/ErrorHandler";
+import CardLoader from "../shared/CardLoader";
+import CardTemplate from "../shared/CardTemplate";
 export default {
   name: "TopProducts",
   components: { CardLoader, CardTemplate },
@@ -42,7 +42,7 @@ export default {
         });
     }
   },
-  mounted() {
+  created() {
     this.getTopProducts();
   }
 };

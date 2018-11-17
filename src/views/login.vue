@@ -20,7 +20,7 @@
     </div>    
 </template>
 <script>
-import CreateAccount from "../components/CreateAccount";
+import CreateAccount from "@/components/CreateAccount";
 export default {
   name: "login",
   components: { CreateAccount },
