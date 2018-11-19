@@ -73,7 +73,6 @@ export default {
             "productCategory"
           );
           this.categories.unshift({ productCategory: "All" });
-          console.log("categories", this.categories);
         })
         .catch(error => {
           console.log(error);
@@ -81,7 +80,6 @@ export default {
     },
     
     filterProductByCategory(event) {
-      console.log(event.target.value);
       const productList = [...this.products_list];
       let filteredData = [];
       if (event.target.value !== "All") {
@@ -96,8 +94,6 @@ export default {
 
         this.product_duplicate = filteredData;
       }
-
-      console.log("Filtered Data", filteredData);
     }
   },
 

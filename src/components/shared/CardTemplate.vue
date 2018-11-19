@@ -25,14 +25,14 @@
                 </div>
             </div>
         </div>
-        <edit-product ref="editProduct" />
+        
     </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 import { infoToaster, successToaster } from "./service/ErrorHandler";
-import EditProduct from "../../components/products/actions/EditProduct";
+
 import _ from "lodash";
 export default {
   name: "cardTemplate",
@@ -42,7 +42,7 @@ export default {
       showModal: false
     }
   },
-  components: { EditProduct },
+  components: { },
   methods: {
     navigateProductDetail(product) {
       this.$router.push({
@@ -64,7 +64,7 @@ export default {
     },
 
     updateEditProduct(product, id) {
-      this.$refs.editProduct.setProduct(product);
+      this.$parent.editProduct(product);
     }
   },
   mounted() {}

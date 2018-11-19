@@ -7,6 +7,7 @@
                    <card-template :item="item" />
                 </div>
            </div>
+           <edit-product ref="editProduct" />
     </div>
 </template>
 
@@ -24,7 +25,11 @@ export default {
       selectedProduct: Object
     };
   },
-  methods: {},
+  methods: {
+    editProduct(product){
+      this.$refs.editProduct.setProduct(product);
+    }
+  },
   mounted() {}
 };
 </script>

@@ -8,6 +8,7 @@
                     <card-template :item="item"/>
                 </div>
         </div> 
+        <edit-product ref="editProduct" />
     </div>
 </template>
 
@@ -16,9 +17,10 @@ import axios from "axios";
 import { errorToaster } from "../shared/service/ErrorHandler";
 import CardLoader from "../shared/CardLoader";
 import CardTemplate from "../shared/CardTemplate";
+import EditProduct from "./actions/EditProduct"
 export default {
   name: "TopProducts",
-  components: { CardLoader, CardTemplate },
+  components: { CardLoader, CardTemplate, EditProduct },
   data() {
     return {
       topProducts: [],
@@ -26,6 +28,11 @@ export default {
     };
   },
   methods: {
+
+    editProduct(product){
+      this.$refs.editProduct.setProduct(product);
+    },
+    
     getTopProducts() {
       this.loading = true;
       axios

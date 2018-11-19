@@ -90,7 +90,6 @@ export default {
       this.product = product;
     },
 
-
     updateProduct(){
 
     }
@@ -119,8 +118,6 @@ export default {
           );
 
           this.sellers.push({ productSeller: "Create New" })
-
-          console.log("categories", this.categories);
         })
         .catch(error => {
           console.log(error);
