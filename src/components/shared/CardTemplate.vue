@@ -63,6 +63,7 @@ export default {
       }
     },
 
+    // this will trigger the parentComponent function
     updateEditProduct(product, id) {
       this.$parent.editProduct(product);
     }
@@ -70,6 +71,3 @@ export default {
   mounted() {}
 };
 </script>
-
-<style>
-</style>

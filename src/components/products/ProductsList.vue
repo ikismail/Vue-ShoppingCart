@@ -26,7 +26,9 @@ export default {
     };
   },
   methods: {
+    //manadatory function called from cardTemplate while onClick 'edit'
     editProduct(product){
+      // this.will pass the product to the editProduct to bind with Product Object
       this.$refs.editProduct.setProduct(product);
     }
   },

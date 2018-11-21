@@ -13,7 +13,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" @click="$emit('close')">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -35,13 +34,5 @@ export default {
 .showModal {
   display: block;
   background-color: rgba(0, 0, 0, .5);
-}
-
-.modal {
-    .modal-dialog{
-        .modal-content{
-             text-align: start;
-        }
-    }
 }
 </style>

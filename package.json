@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --fix",
     "start": "node server.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",

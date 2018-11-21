@@ -27,6 +27,7 @@ export default {
   },
   methods: {
 
+  //manadatory function called from cardTemplate 
     editProduct(product){
       this.$refs.editProduct.setProduct(product);
     },

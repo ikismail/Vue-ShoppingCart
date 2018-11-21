@@ -127,7 +127,7 @@ export default {
       this.ADD_CART_LOCAL(product);
     }
   },
-  mounted() {
+  created() {
     axios
       .get(`${process.env.VUE_APP_BASE_URL}/products/${this.$route.params.id}`)
       .then(response => {
