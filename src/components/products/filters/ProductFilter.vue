@@ -1,8 +1,12 @@
 <template>
     <div class="productFilter">
-        <h4 class="d-flex mb-3">
+        <div id="prdfilter">
+            <h4 class="d-flex mb-3">
             <span class="text-muted">Filters: </span>
           </h4>
+          <div class="form-group createProduct">
+              <button class="btn buttonGreen-outline" @click="openCreateModal">Create New Product</button>
+          </div>
           <div class="form-group">
                 <label for="filterPrdCty">By Category:</label>
                 <select class="form-control" id="filterPrdCty" v-model="selectedCategory" @change="(event) => updateProductCategory(event, 'productCategory')">
@@ -28,23 +32,34 @@
             <li class="list-group-item">Porta ac consectetur ac</li>
             <li class="list-group-item">Vestibulum at eros</li>
           </ul>
-
+        </div>
+        <create-product ref="createProduct" />
     </div>
 </template>
 
 <script>
+import CreateProduct from "../actions/CreateProduct"
 export default {
     name: "productFilter",
     props: ['categories', 'sellers'],
+    components: { CreateProduct },
     data() {
         return {
             selectedCategory: "All",
             selectedSeller: "All",
+            showCreateProductModal: false
         }
     },
     methods: {
+        
+        // This method will trigger the parent Components (Prodcuts Component) function
         updateProductCategory(event, productFilterID){
             this.$parent.filterProductBy(event, productFilterID);
+        },
+
+        // This method will trigger the function in createProduct Component
+        openCreateModal(){
+            this.$refs.createProduct.showModalForm();
         }
     }
 }
@@ -52,6 +67,8 @@ export default {
 
 <style lang="scss">
     .productFilter {  
-        text-align: start;
+       #prdfilter {
+         text-align: start !important;
+       }
     }
 </style>
