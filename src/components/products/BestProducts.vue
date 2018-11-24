@@ -6,17 +6,19 @@
                     <card-template :item="item"/>
                 </div>
         </div> 
+        <edit-product ref="editProduct" />
     </div>
 </template>
 
 <script>
 import axios from "axios";
-import { errorToaster } from "./shared/service/ErrorHandler.js";
-import CardLoader from "./shared/CardLoader.vue";
-import CardTemplate from "./shared/CardTemplate.vue";
+import { errorToaster } from "../shared/service/ErrorHandler";
+import CardLoader from "../shared/CardLoader";
+import CardTemplate from "../shared/CardTemplate";
+import EditProduct from "./actions/EditProduct"
 export default {
   name: "BestProducts",
-  components: { CardLoader, CardTemplate },
+  components: { CardLoader, CardTemplate, EditProduct },
   data() {
     return {
       bestProducts: [],
@@ -24,6 +26,12 @@ export default {
     };
   },
   methods: {
+
+  //manadatory function called from cardTemplate 
+    editProduct(product){
+      this.$refs.editProduct.setProduct(product);
+    },
+
     getBestProducts() {
       this.loading = true;
       axios
@@ -41,7 +49,7 @@ export default {
         });
     }
   },
-  mounted() {
+  created() {
     this.getBestProducts();
   }
 };

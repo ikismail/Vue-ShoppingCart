@@ -1,3 +1,6 @@
+/* Handling Errors through Toastr */
+
+
 import toastr from "toastr";
 
 export const successToaster = (title, desc) => {

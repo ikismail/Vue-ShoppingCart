@@ -1,9 +1,8 @@
 // Get dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
-
+const history = require('connect-history-api-fallback')
 // Get our API routes
-
 const mongodb = require('./server/mongo/config')
 
 const api = require('./server/routes/api')
@@ -39,6 +38,10 @@ app.use((req, res, next) => {
     next();
 })
 
+
+app.use(history({
+    index: '/index.html'
+}))
 
 
 app.use('/api', [api, productApi])

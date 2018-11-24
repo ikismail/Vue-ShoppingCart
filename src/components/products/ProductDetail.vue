@@ -77,7 +77,7 @@
                     alt="Card image cap" 
                     style="max-height: 500px; max-width: 127.135px;margin: auto">
                     <div class="card-body">
-                        <h6 class="card-text">{{item.productName}}.</h6>
+                        <h6 class="card-text" style="height:50px">{{item.productName}}.</h6>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary"   
@@ -127,7 +127,7 @@ export default {
       this.ADD_CART_LOCAL(product);
     }
   },
-  mounted() {
+  created() {
     axios
       .get(`${process.env.VUE_APP_BASE_URL}/products/${this.$route.params.id}`)
       .then(response => {
@@ -154,6 +154,10 @@ export default {
 </script>
 
 <style>
+.product-detail {
+  text-align: start;
+}
+
 .product-detail .product-head {
   padding: 10px;
   font-weight: 500;

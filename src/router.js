@@ -5,7 +5,7 @@ import Home from './views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [{
       path: '/',
@@ -28,12 +28,12 @@ export default new Router({
     {
       path: '/products/:id',
       name: 'productDetails',
-      component: () => import('./components/ProductDetail.vue')
+      component: () => import('./components/products/ProductDetail.vue')
     },
     {
       path: '/cart',
       name: 'cart',
-      component: () => import('./components/CartProducts.vue')
+      component: () => import('./components/products/cart/CartProducts.vue')
     },
     {
       path: '/login',

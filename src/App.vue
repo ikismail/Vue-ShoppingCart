@@ -69,7 +69,7 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.getLocalProducts();
     console.log(process.env.NODE_ENV);
     console.log(process.env.VUE_APP_BASE_URL);
@@ -138,4 +138,26 @@ footer {
 * .fa {
   font-size: 18px;
 }
+
+.buttonGreen-outline{
+    width: 100%;
+    color: #41b883;
+    background-color: transparent;
+    border-color: #41b883
+}
+.buttonGreen-outline:hover {
+    color: #ffffff;
+    background-color: #41b883;
+    border-color: #41b883
+}
+
+.buttonGreen {
+  color: #fff;
+  background-color: #41b883;
+}
+
+.buttonGreen:hover {
+  background-color: #42a97b;
+}
+
 </style>

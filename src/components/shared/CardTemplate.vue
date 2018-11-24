@@ -11,8 +11,11 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary" 
                         v-on:click="navigateProductDetail(item)">View</button>
+                        
                         <button type="button" 
-                        class="btn btn-sm btn-outline-secondary">Edit</button>
+                        class="btn btn-sm btn-outline-secondary" 
+                        v-on:click="updateEditProduct(item, item._id)"
+                        >Edit</button>
                     </div>
                     <small class="text-muted footerIcons">
                         <a href="javascript:;;" class="p-2"><i class="fa fa-heart"></i></a>
@@ -22,16 +25,24 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import { infoToaster, successToaster } from "./service/ErrorHandler.js";
+import { infoToaster, successToaster } from "./service/ErrorHandler";
+
 import _ from "lodash";
 export default {
   name: "cardTemplate",
   props: ["item"],
+  data() {
+    return {
+      showModal: false
+    }
+  },
+  components: { },
   methods: {
     navigateProductDetail(product) {
       this.$router.push({
@@ -50,11 +61,13 @@ export default {
         successToaster("Added Successfully", "Product Added Successfully");
         this.ADD_CART_LOCAL(product);
       }
+    },
+
+    // this will trigger the parentComponent function
+    updateEditProduct(product, id) {
+      this.$parent.editProduct(product);
     }
   },
   mounted() {}
 };
 </script>
-
-<style>
-</style>
