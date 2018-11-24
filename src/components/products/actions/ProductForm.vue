@@ -59,7 +59,7 @@
                 <label for="productImage">Product Image</label>
                 <input type="text" class="form-control" id="productImage" v-model="product.productImage" placeholder="Product Image URL">
               </div>
-              
+              <br>
               <button type="submit" class="btn buttonGreen">Save changes</button>
         </form>
 
