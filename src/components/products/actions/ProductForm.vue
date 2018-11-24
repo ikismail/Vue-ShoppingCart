@@ -10,7 +10,7 @@
 
               <div class="form-group">
                 <label for="productName">Product Name</label>
-                <input type="email" class="form-control" id="productName" v-model="product.productName" name="productName" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="text" class="form-control" id="productName" v-model="product.productName" name="productName" aria-describedby="emailHelp" placeholder="Enter Product Name">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
@@ -60,83 +60,82 @@
                 <input type="text" class="form-control" id="productImage" v-model="product.productImage" placeholder="Product Image URL">
               </div>
               
-              <button type="button" class="btn buttonGreen">Save changes</button>
+              <button type="submit" class="btn buttonGreen">Save changes</button>
         </form>
 
         <div class="lds-dual-ring" v-if="loading"></div>
     </div>
 </template>
 <script>
-import axios from 'axios'
-
+import axios from "axios";
 
 export default {
-    name: 'productForm',
-    props: ['product'],
-    data(){
-        return {
-            errors:[],
-            productCategroyDummy: '',
-            productSellerDummy: '',
-            categories: [],
-            sellers: [],
-            loading: false
-        }
-    },
-    methods: {
-        actionProduct(product){
-            this.$parent.productAction(product);
-        }
-    },
-    created() {
-
-        this.loading = true;
-        axios.get(`${process.env.VUE_APP_BASE_URL}/products`)
-        .then(response => {
-          // getting all products and getting the uniq value for
-          // productCategory and returning the productCategory property only
-          this.categories =  _.uniqBy(
-            _.map(response.data, function(object) {
-              return _.pick(object, ["productCategory"]);
-            }),
-            "productCategory"
-          );
-          this.categories.push({ productCategory: "Create New" })
-
-          // getting all products and getting the uniq value for
-          // productSeller and returning the productSeller property only
-          this.sellers = _.uniqBy(
-            _.map(response.data, function(object) {
-              return _.pick(object, ["productSeller"]);
-            }),
-            "productSeller"
-          );
-
-          this.sellers.push({ productSeller: "Create New" })
-
-          this.loading = false;
-
-        })
-        .catch(error => {
-          console.log(error);
-        });
+  name: "productForm",
+  props: ["product"],
+  data() {
+    return {
+      errors: [],
+      productCategroyDummy: "",
+      productSellerDummy: "",
+      categories: [],
+      sellers: [],
+      loading: false
+    };
+  },
+  methods: {
+    actionProduct(event) {
+      event.preventDefault();
+      this.$emit("submit-form", this.product);
     }
-}
+  },
+  created() {
+    this.loading = true;
+    axios
+      .get(`${process.env.VUE_APP_BASE_URL}/products`)
+      .then(response => {
+        // getting all products and getting the uniq value for
+        // productCategory and returning the productCategory property only
+        this.categories = _.uniqBy(
+          _.map(response.data, function(object) {
+            return _.pick(object, ["productCategory"]);
+          }),
+          "productCategory"
+        );
+        this.categories.push({ productCategory: "Create New" });
+
+        // getting all products and getting the uniq value for
+        // productSeller and returning the productSeller property only
+        this.sellers = _.uniqBy(
+          _.map(response.data, function(object) {
+            return _.pick(object, ["productSeller"]);
+          }),
+          "productSeller"
+        );
+
+        this.sellers.push({ productSeller: "Create New" });
+
+        this.loading = false;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+};
 </script>
 <style lang="scss">
-    .productForm{
-        div {
-            text-align: start
-        }
-        #productCU {
-          div{
-            text-align: start
-          }
-          button {
-            text-align: center
-          }
-        }
+.productForm {
+  div {
+    text-align: start;
+  }
+  #productCU {
+    div {
+      text-align: start;
     }
+    button {
+      text-align: center;
+    }
+  }
+}
 
 .lds-dual-ring {
   display: inline-block;
@@ -162,5 +161,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>

@@ -1,14 +1,14 @@
 <template>
     <div class="edit-product">
        <modal :header="'Edit Product'" :isShow="showModal" v-if="showModal" @close="showModal = false">
-            <product-form :product="product" />
+            <product-form :product="product" v-on:submit-form="productAction"/>
        </modal>
     </div>
 </template>
 
 <script>
 import Modal from "../../shared/Modal";
-import ProductForm from './ProductForm'
+import ProductForm from "./ProductForm";
 
 export default {
   name: "editProduct",
@@ -20,20 +20,18 @@ export default {
     };
   },
   methods: {
-    
     setProduct(product) {
       this.showModal = true;
       this.product = product;
     },
 
-    actionProduct(product){
-      console.log('Triggering Edit Action Product')
-        // Update the product to server
+    productAction: function(product) {
+      console.log("Updated Product Details", product);
+      // Update the product to server
     }
   }
 };
 </script>
 
 <style>
-  
 </style>
