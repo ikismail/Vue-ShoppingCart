@@ -107,9 +107,9 @@ body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
-  width: 1110px;
+  width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
   background-color: #f5f5f5;
 }
