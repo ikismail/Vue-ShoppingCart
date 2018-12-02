@@ -2,10 +2,9 @@
   <div class="login">
     <div class="row">
       <div class="col">
-        <createAccount></createAccount>
-      </div>
-      <div class="col">
-        <form class="form-signin" @submit.prevent="login">
+        <createAccount v-if="isSignUp"></createAccount>
+
+        <form class="form-signin" @submit.prevent="login" v-if="!isSignUp">
           <img class="mb-4" src="../assets/login-img.png" alt width="72" height="72">
           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
           <label for="email" class="sr-only">Email address</label>
@@ -28,13 +27,23 @@
             required
             autocomplete="current-password"
           >
+          <p class="text-muted">
+            <a href="javascript:;;">Forget password ?</a>
+          </p>
           <button class="btn btn-lg btn-primary btn-block" type="submit">
             <i class="fa fa-spinner fa-spin mr-1" v-if="showLoader"></i> Log In
           </button>
-          <p class="mt-5 mb-3 text-muted">
-            <a href="javascript:;;">Forget password ?</a>
-          </p>
         </form>
+        <p class="mt-3 text-muted">
+          <span v-if="isSignUp">
+            Already a member?
+            <a href="javascript:;;" @click="toggleForm">Sign in</a>
+          </span>
+          <span v-if="!isSignUp">
+            New to ikismail?
+            <a href="javascript:;;" @click="toggleForm">Create an Account</a>
+          </span>
+        </p>
       </div>
     </div>
   </div>
@@ -49,10 +58,15 @@ export default {
     return {
       email: "",
       password: "",
-      showLoader: false
+      showLoader: false,
+      isSignUp: false
     };
   },
   methods: {
+    toggleForm() {
+      this.isSignUp = !this.isSignUp;
+    },
+
     //  Login function usign email and password
     login(event) {
       this.showLoader = true;
@@ -73,6 +87,7 @@ export default {
 .login {
   position: relative;
   top: 50px;
+  margin-bottom: 15%;
 }
 
 .form-signin {
