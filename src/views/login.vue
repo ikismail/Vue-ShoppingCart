@@ -51,6 +51,11 @@
 <script>
 import CreateAccount from "@/components/CreateAccount";
 import { encryptUser } from "../components/shared/service/authService";
+import axios from "axios";
+import {
+  successToaster,
+  errorToaster
+} from "../components/shared/service/ErrorHandler.js";
 export default {
   name: "login",
   components: { CreateAccount },
@@ -74,11 +79,21 @@ export default {
         email: this.email,
         password: this.password
       };
-      const encryptedUser = encryptUser(user);
-      localStorage.setItem("_auth", encryptedUser);
-      event.target.reset();
-      this.$router.push({ path: "/" });
-      this.showLoader = false;
+
+      axios
+        .post(`${process.env.VUE_APP_BASE_URL}/login`, user)
+        .then(response => {
+          this.showLoader = false;
+          const encryptedUser = encryptUser(response.data[0]);
+          localStorage.setItem("_auth", encryptedUser);
+          event.target.reset();
+          this.$router.push(this.$route.query.from || "/");
+        })
+        .catch(error => {
+          this.showLoader = false;
+          errorToaster("Invalid Credentials", "");
+          console.log(error);
+        });
     }
   }
 };

@@ -2,53 +2,62 @@
   <div id="app" class="container">
     <main>
       <nav class="navbar navbar-expand-sm bg-light mb-4" id="nav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <img alt="Vue logo" src="./assets/logo.png" width="50px">
-            </li>
-            <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/products" class="nav-link">All Products</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/about" class="nav-link">About</router-link>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link to="/cart" class="nav-link"><i class="fa fa-shopping-cart mr-1"><span class="ml-1">{{this.cartProducts.length}}</span></i></router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link"> Login</router-link>
-            </li>
-          </ul>
-        </nav>
-        <router-view/>
-      </main>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <img alt="Vue logo" src="./assets/logo.png" width="50px">
+          </li>
+          <li class="nav-item">
+            <router-link to="/" class="nav-link">Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/products" class="nav-link">All Products</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/about" class="nav-link">About</router-link>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link to="/cart" class="nav-link">
+              <i class="fa fa-shopping-cart mr-1">
+                <span class="ml-1">{{this.cartProducts.length}}</span>
+              </i>
+            </router-link>
+          </li>
+          <li class="nav-item" v-if="isLogged()">
+            <router-link to="/" class="nav-link" @click.native="loc_logout">Logout</router-link>
+          </li>
+          <li class="nav-item" v-if="!isLogged()">
+            <router-link to="/login" class="nav-link">Login</router-link>
+          </li>
+        </ul>
+      </nav>
+      <router-view/>
+    </main>
 
     <footer class="container-fluid footer text-left mt-3">
-    <p class="mr-auto">Developed by: <strong>Mohammed Ismail</strong>
-    </p>
-    <div style="float:right">
-      <a href="mailto:ikismail7@gmail.com" style="margin-right:10px">
-        <i class="fa fa-envelope-open" aria-hidden="true" style="font-size:20px"></i>
-      </a>
-      <a href="https://github.com/ikismail" target="_blank" style="margin-right:10px">
-        <i class="fa fa-github" aria-hidden="true" style="font-size:20px"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/ikismail7/" target="_blank" style="margin-right:10px">
-        <i class="fa fa-linkedin" aria-hidden="true" style="font-size:20px"></i>
-      </a>
-    </div>
-  </footer>
+      <p class="mr-auto">
+        Developed by:
+        <strong>Mohammed Ismail</strong>
+      </p>
+      <div style="float:right">
+        <a href="mailto:ikismail7@gmail.com" style="margin-right:10px">
+          <i class="fa fa-envelope-open" aria-hidden="true" style="font-size:20px"></i>
+        </a>
+        <a href="https://github.com/ikismail" target="_blank" style="margin-right:10px">
+          <i class="fa fa-github" aria-hidden="true" style="font-size:20px"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ikismail7/" target="_blank" style="margin-right:10px">
+          <i class="fa fa-linkedin" aria-hidden="true" style="font-size:20px"></i>
+        </a>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-
+import { isLoggedIn } from "./components/shared/service/authService";
 export default {
   data() {
     return {
@@ -58,7 +67,7 @@ export default {
   computed: mapState(["cartProducts"]),
   methods: {
     /* Initially loading the cart products from local storage */
-    
+
     ...mapMutations(["SET_CART_PRODUCTS"]),
 
     getLocalProducts() {
@@ -67,6 +76,15 @@ export default {
       if (products) {
         this.SET_CART_PRODUCTS(products);
       }
+    },
+
+    isLogged() {
+      return isLoggedIn();
+    },
+
+    loc_logout() {
+      console.log("clicked");
+      localStorage.removeItem("_auth");
     }
   },
   created() {
@@ -139,16 +157,16 @@ footer {
   font-size: 18px;
 }
 
-.buttonGreen-outline{
-    width: 100%;
-    color: #41b883;
-    background-color: transparent;
-    border-color: #41b883
+.buttonGreen-outline {
+  width: 100%;
+  color: #41b883;
+  background-color: transparent;
+  border-color: #41b883;
 }
 .buttonGreen-outline:hover {
-    color: #ffffff;
-    background-color: #41b883;
-    border-color: #41b883
+  color: #ffffff;
+  background-color: #41b883;
+  border-color: #41b883;
 }
 
 .buttonGreen {
@@ -159,5 +177,4 @@ footer {
 .buttonGreen:hover {
   background-color: #42a97b;
 }
-
 </style>

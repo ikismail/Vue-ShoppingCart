@@ -40,8 +40,3 @@ export const getLoggedInUser = () => {
     const data = decryptUser();
     return data;
 }
-
-/* Logging Out */
-export const logout = () => {
-    localStorage.removeItem("_auth");
-}

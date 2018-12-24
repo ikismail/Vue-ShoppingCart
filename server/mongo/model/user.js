@@ -2,12 +2,12 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var UserSchema = new Schema({
-    uid: String,
-    name: String,
+    firstName: String,
+    lastName: String,
+    fullName: String,
     email: String,
+    isAdmin: Boolean,
     password: String,
-    user_avatar: String,
-    phoneNumber: Number,
     createdOn: String
 })
 
