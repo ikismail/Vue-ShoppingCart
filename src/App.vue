@@ -85,6 +85,7 @@ export default {
     loc_logout() {
       console.log("clicked");
       localStorage.removeItem("_auth");
+      this.$router.push("/");
     }
   },
   created() {

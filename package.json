@@ -3,9 +3,9 @@
     "version": "0.2.0",
     "private": true,
     "scripts": {
-        "serve": "vue-cli-service serve --fix",
+        "serve": "vue-cli-service serve",
         "start": "nodemon server.js",
-        "dev": "concurrently \"npm:start \" \"npm:serve \"",
+        "dev": "concurrently \"npm:start\" \"npm:serve --fix\"",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "postinstall": "vue-cli-service build"
