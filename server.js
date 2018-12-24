@@ -7,6 +7,7 @@ const mongodb = require('./server/mongo/config')
 
 const api = require('./server/routes/api')
 const productApi = require('./server/routes/productApi')
+const authApi = require('./server/routes/authApi');
 
 const app = express()
 
@@ -44,7 +45,7 @@ app.use(history({
 }))
 
 
-app.use('/api', [api, productApi])
+app.use('/api', [api, productApi, authApi])
 
 // Initialize the app.
 var server = app.listen(process.env.PORT || 8080, function () {

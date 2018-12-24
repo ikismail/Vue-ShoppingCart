@@ -22,22 +22,20 @@ router.route('/users')
     .post((req, res) => {
         const user = new UserModel() // create a new instance of the User model
 
-        user.uid = req.body.uid
-        user.name = req.body.name
+        user.firstName = req.body.firstName
+        user.lastName = req.body.lastName
+        user.fullName = req.body.firstName + " " + req.body.lastName
         user.password = req.body.password
         user.email = req.body.email
-        user.user_avatar = req.body.user_avatar
-        user.phoneNumber = req.body.phoneNumber
-        user.createdOn = req.body.createdOn
+        user.isAdmin = false
+        user.createdOn = new Date().toLocaleString()
 
         // save the bear and check for errors
         user.save(user, (err, user) => {
             if (err) {
                 res.send(err)
             }
-
             console.log('**********NEWLY CREATED SITEURL***********')
-            console.log(user)
             res.send(user)
         })
     })
@@ -47,7 +45,6 @@ router.route('/users')
             if (err) {
                 res.send(err)
             }
-            console.log('data', data)
             res.json(data)
         })
     })
@@ -63,7 +60,6 @@ router.route('/users/:user_id')
             if (err) {
                 res.send(err)
             }
-            console.log('data', data)
             res.json(data)
         })
     })
@@ -76,10 +72,10 @@ router.route('/users/:user_id')
                 res.send(err)
             }
 
-            user.uid = req.body.uid
             user.name = req.body.name
             user.password = req.body.password
             user.email = req.body.email
+            user.isAdmin = false
             user.user_avatar = req.body.user_avatar
             user.phoneNumber = req.body.phoneNumber
             user.createdOn = req.body.createdOn
@@ -89,24 +85,10 @@ router.route('/users/:user_id')
                 if (err) {
                     res.send(err)
                 }
-                console.log('Updating User', data)
                 res.send(data)
             })
 
         })
-    })
-
-    // delete the user with this id (accessed at DELETE http://localhost:8080/api/users/:user_id)
-    .delete(function (req, res) {
-        UserModel.remove({
-                _id: req.params.user_id
-            },
-            function (err, user) {
-                if (err) {
-                    res.send(err)
-                }
-                res.send(user)
-            })
     })
 
 module.exports = router
