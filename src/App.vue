@@ -1,36 +1,69 @@
 <template>
   <div id="app" class="container">
     <main>
-      <nav class="navbar navbar-expand-sm bg-light mb-4" id="nav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <img alt="Vue logo" src="./assets/logo.png" width="50px">
-          </li>
-          <li class="nav-item">
-            <router-link to="/" class="nav-link">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/products" class="nav-link">All Products</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/about" class="nav-link">About</router-link>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link to="/cart" class="nav-link">
-              <i class="fa fa-shopping-cart mr-1">
-                <span class="ml-1">{{this.cartProducts.length}}</span>
-              </i>
-            </router-link>
-          </li>
-          <li class="nav-item" v-if="isLogged()">
-            <router-link to="/" class="nav-link" @click.native="loc_logout">Logout</router-link>
-          </li>
-          <li class="nav-item" v-if="!isLogged()">
-            <router-link to="/login" class="nav-link">Login</router-link>
-          </li>
-        </ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
+        <img alt="Vue logo" src="./assets/logo.png" width="50px">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarText"
+          aria-controls="navbarText"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <router-link to="/" class="nav-link">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/products" class="nav-link">All Products</router-link>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <router-link to="/about" class="nav-link">About</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/cart" class="nav-link">
+                <i class="fa fa-shopping-cart mr-1">
+                  <span class="ml-1">{{this.cartProducts.length}}</span>
+                </i>
+              </router-link>
+            </li>
+            <li class="nav-item dropdown" v-if="isLogged()">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >{{this.loggedUser.firstName}}</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Profile</a>
+                <router-link to="/login" class="dropdown-item">Profile</router-link>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <router-link
+                  to="/"
+                  class="dropdown-item btn btn-outline-danger"
+                  @click.native="loc_logout"
+                >Logout</router-link>
+              </div>
+            </li>
+            <li class="nav-item" v-if="!isLogged()">
+              <router-link to="/login" class="nav-link">Login</router-link>
+            </li>
+          </ul>
+        </div>
       </nav>
       <router-view/>
     </main>
@@ -57,18 +90,21 @@
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
-import { isLoggedIn } from "./components/shared/service/authService";
+import {
+  isLoggedIn,
+  getLoggedInUser
+} from "./components/shared/service/authService";
 export default {
   data() {
     return {
       cartValue: 0
     };
   },
-  computed: mapState(["cartProducts"]),
+  computed: mapState(["cartProducts", "loggedUser"]),
   methods: {
     /* Initially loading the cart products from local storage */
 
-    ...mapMutations(["SET_CART_PRODUCTS"]),
+    ...mapMutations(["SET_CART_PRODUCTS", "ADD_LOGGED_USER"]),
 
     getLocalProducts() {
       const products = JSON.parse(localStorage.getItem("iki-cart"));
@@ -86,10 +122,16 @@ export default {
       console.log("clicked");
       localStorage.removeItem("_auth");
       this.$router.push("/");
+      location.reload();
     }
   },
   created() {
     this.getLocalProducts();
+
+    const loggedUser = getLoggedInUser();
+
+    this.ADD_LOGGED_USER(loggedUser);
+
     console.log(process.env.NODE_ENV);
     console.log(process.env.VUE_APP_BASE_URL);
   }
