@@ -39,8 +39,6 @@ export default new Router({
             name: 'cart',
             component: () => import('./components/products/cart/CartProducts.vue'),
             beforeEnter: (to, from, next) => {
-                console.log("From", from)
-                console.log("To", to)
                 if (isLoggedIn()) {
                     next();
                 } else {

@@ -68,7 +68,7 @@
 </template>
 <script>
 import axios from "axios";
-
+import {errorToaster} from "../../shared/service/ErrorHandler.js"
 export default {
   name: "productForm",
   props: ["product"],
@@ -118,6 +118,7 @@ export default {
       })
       .catch(error => {
         console.log(error);
+        errorToaster("Error while fetching products", "");
       });
   }
 };

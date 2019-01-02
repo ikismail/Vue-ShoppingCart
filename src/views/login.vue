@@ -56,6 +56,9 @@ import {
   successToaster,
   errorToaster
 } from "../components/shared/service/ErrorHandler.js";
+
+import { mapState, mapActions, mapMutations } from "vuex";
+
 export default {
   name: "login",
   components: { CreateAccount },
@@ -72,6 +75,8 @@ export default {
       this.isSignUp = !this.isSignUp;
     },
 
+    ...mapMutations(["ADD_LOGGED_USER"]),
+
     //  Login function usign email and password
     login(event) {
       this.showLoader = true;
@@ -84,8 +89,7 @@ export default {
         .post(`${process.env.VUE_APP_BASE_URL}/login`, user)
         .then(response => {
           this.showLoader = false;
-          const encryptedUser = encryptUser(response.data[0]);
-          localStorage.setItem("_auth", encryptedUser);
+          this.ADD_LOGGED_USER(response.data[0]);
           event.target.reset();
           this.$router.push(this.$route.query.from || "/");
         })

@@ -18,7 +18,6 @@ router.route('/login').post((req, res) => {
                 message: 'Unauthorized credentials mismatch'
             })
         } else {
-            console.log("Authenticated", user)
             res.json(user)
         }
 
