@@ -64,7 +64,7 @@
 </template>
 <script>
 import axios from "axios";
-import { successToaster } from "./shared/service/ErrorHandler.js";
+import { successToaster, errorToaster } from "./shared/service/ErrorHandler.js";
 export default {
   name: "CreateAccount",
   data() {
@@ -92,6 +92,10 @@ export default {
         })
         .catch(error => {
           console.log(error);
+          errorToaster(
+            "Registeration Failed",
+            "Please try again after sometime"
+          );
         });
     }
   }

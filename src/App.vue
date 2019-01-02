@@ -25,11 +25,11 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Pricing</a>
             </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <router-link to="/about" class="nav-link">About</router-link>
             </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <router-link to="/cart" class="nav-link">
                 <i class="fa fa-shopping-cart mr-1">
@@ -48,13 +48,12 @@
                 aria-expanded="false"
               >{{this.loggedUser.firstName}}</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Profile</a>
-                <router-link to="/login" class="dropdown-item">Profile</router-link>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <router-link to="/" class="dropdown-item">Profile</router-link>
+                <!-- <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>-->
                 <router-link
                   to="/"
-                  class="dropdown-item btn btn-outline-danger"
+                  class="dropdown-item text-danger"
                   @click.native="loc_logout"
                 >Logout</router-link>
               </div>
@@ -119,7 +118,6 @@ export default {
     },
 
     loc_logout() {
-      console.log("clicked");
       localStorage.removeItem("_auth");
       this.$router.push("/");
       location.reload();

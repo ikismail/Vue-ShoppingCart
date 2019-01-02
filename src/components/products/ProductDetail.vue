@@ -85,6 +85,8 @@
 import axios from "axios";
 import { mapState, mapActions, mapMutations } from "vuex";
 import CardTemplate from "../shared/CardTemplate";
+import { errorToaster } from "../../components/shared/service/ErrorHandler.js";
+
 export default {
   name: "productDetail",
   components: { CardTemplate },
@@ -133,6 +135,7 @@ export default {
       })
       .catch(error => {
         console.log(error);
+        errorToaster("Error while fetching similar products", "");
       });
   }
 };

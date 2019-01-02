@@ -26,7 +26,6 @@ export default new Vuex.Store({
         },
 
         ADD_LOGGED_USER: (state, user) => {
-            console.log(user)
             state.loggedUser = user
             localStorage.setItem('_auth', encryptUser(user))
         },
