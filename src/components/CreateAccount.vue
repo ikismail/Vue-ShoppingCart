@@ -3,6 +3,13 @@
     <form class="form-signup" @submit.prevent="createAccount">
       <img class="mb-4" src="../assets/create-account.svg" alt width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Create an account</h1>
+      <div
+        class="alert alert-danger"
+        role="alert"
+        v-for="(error, index) in errorMessage"
+        :key="index"
+      >{{error}}</div>
+
       <div class="row">
         <div class="col-md-6 mb-3">
           <input
@@ -75,28 +82,50 @@ export default {
         lastName: "",
         email: "",
         password: ""
-      }
+      },
+      errorMessage: []
     };
   },
   methods: {
-    createAccount() {
+    createAccount(e) {
       this.showLoader = true;
-      axios
-        .post(`${process.env.VUE_APP_BASE_URL}/users`, this.user)
-        .then(response => {
-          this.showLoader = false;
-          successToaster(
-            "Registered Successfully",
-            "User Registered Successfully"
-          );
-        })
-        .catch(error => {
-          console.log(error);
-          errorToaster(
-            "Registeration Failed",
-            "Please try again after sometime"
-          );
-        });
+
+      this.errorMessage = [];
+
+      if (this.user.firstName.length < 5) {
+        this.errorMessage.push(
+          "FirstName should contains more than 5 character"
+        );
+      }
+
+      if (this.ValidateEmail(this.user.email) === false) {
+        this.errorMessage.push("Please provide a valid Email address");
+      }
+      if (this.errorMessage.length === 0) {
+        axios
+          .post(`${process.env.VUE_APP_BASE_URL}/users`, this.user)
+          .then(response => {
+            this.showLoader = false;
+            successToaster(
+              "Registered Successfully",
+              "User Registered Successfully"
+            );
+          })
+          .catch(error => {
+            console.log(error);
+            errorToaster(
+              "Registeration Failed",
+              "Please try again after sometime"
+            );
+          });
+      }
+    },
+
+    ValidateEmail(mail) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return true;
+      }
+      return false;
     }
   }
 };
