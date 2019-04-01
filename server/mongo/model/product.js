@@ -8,6 +8,8 @@ var ProductSchema = new Schema({
     productPrice: String,
     productImage: String,
     productSeller: String,
+    isBestProduct: Boolean,
+    isTopProduct: Boolean,
     productRating: Number
 })
 

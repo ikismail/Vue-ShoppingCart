@@ -7,7 +7,8 @@ const mongodb = require('./server/mongo/config')
 
 const api = require('./server/routes/api')
 const productApi = require('./server/routes/productApi')
-const authApi = require('./server/routes/authApi');
+const ShippingDetailApi = require('./server/routes/shippingDetailApi')
+const authApi = require('./server/routes/authApi')
 
 const app = express()
 
@@ -36,7 +37,7 @@ app.use((req, res, next) => {
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
 
-    next();
+    next()
 })
 
 
@@ -45,7 +46,7 @@ app.use(history({
 }))
 
 
-app.use('/api', [api, productApi, authApi])
+app.use('/api', [api, productApi, authApi, ShippingDetailApi])
 
 // Initialize the app.
 var server = app.listen(process.env.PORT || 8080, function () {
