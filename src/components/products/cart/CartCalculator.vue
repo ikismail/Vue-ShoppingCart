@@ -18,10 +18,8 @@
       <hr>
       <li class="list-group-item d-flex justify-content-between">
         <span>Total (INR)</span>
-        <strong>₹ {{totalValue}}</strong>
+        <strong>₹ {{totalValue.toFixed(2)}}</strong>
       </li>
-      <router-link to="/products" class="btn btn-primary mt-2 text-white">Continue Shipping</router-link>
-      <a class="btn btn-danger mt-2 text-white">Checkout</a>
     </ul>
   </div>
 </template>

@@ -50,8 +50,8 @@ router.route('/products')
 router.route('/best/products/')
     .get(function (req, res) {
         ProductModel.find({
-                isBestProduct: true
-            },
+            isBestProduct: true
+        },
             function (err, product) {
                 if (err) {
                     res.send(err)
@@ -166,8 +166,8 @@ router.route('/products/:product_id')
     // delete the product with this id (accessed at DELETE http://localhost:8080/api/products/:product_id)
     .delete(function (req, res) {
         ProductModel.remove({
-                _id: req.params.product_id
-            },
+            _id: req.params.product_id
+        },
             function (err, product) {
                 if (err) {
                     res.send(err)

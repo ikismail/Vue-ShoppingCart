@@ -1,6 +1,6 @@
 <template>
   <div class="cart-products">
-    <div class="row">
+    <div class="row mt-5">
       <div class="col">
         <div class="row">
           <template v-if="cartProducts.length > 0">
@@ -45,6 +45,10 @@
       </div>
       <div class="col-4">
         <cart-calculator ref="cartCalculator"></cart-calculator>
+        <ul class="list-group mb-3">
+          <router-link to="/products" class="btn btn-primary mt-2 text-white">Continue Shipping</router-link>
+          <router-link to="/checkout" class="btn btn-danger mt-2 text-white">Checkout</router-link>
+        </ul>
       </div>
     </div>
   </div>
