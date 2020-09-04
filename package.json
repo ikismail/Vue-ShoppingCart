@@ -35,7 +35,7 @@
         "@vue/cli-plugin-pwa": "^3.1.2",
         "@vue/cli-service": "^3.1.4",
         "@vue/eslint-config-standard": "^4.0.0",
-        "node-sass": "^4.10.0",
+        "node-sass": "^4.13.1",
         "sass-loader": "^7.0.1",
         "vue-template-compiler": "^2.5.17"
     }
