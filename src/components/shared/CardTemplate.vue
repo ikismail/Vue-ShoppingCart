@@ -5,25 +5,29 @@
         class="card-img-top mt-2"
         v-bind:src="item.productImage"
         alt="Card image cap"
-        style="max-height: 700px; max-width: 127.135px;margin: auto"
-      >
+        style="max-height: 700px; max-width: 127.135px; margin: auto"
+      />
       <div class="card-body">
-        <h6 class="card-text">{{item.productName}}.</h6>
-        <p class="card-text">{{item.productDescription}}.</p>
+        <h6 class="card-text">{{ item.productName }}.</h6>
+        <p class="card-text">{{ item.productDescription }}.</p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
               v-on:click="navigateProductDetail(item)"
-            >View</button>
-            
+            >
+              View
+            </button>
+
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
               v-on:click="updateEditProduct(item, item._id)"
               v-if="loggedUser && loggedUser.isAdmin"
-            >Edit</button>
+            >
+              Edit
+            </button>
           </div>
           <small class="text-muted footerIcons">
             <a href="javascript:;;" class="p-2">
@@ -40,7 +44,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import { infoToaster, successToaster } from "./service/ErrorHandler";
 
 import _ from "lodash";
@@ -49,7 +53,7 @@ export default {
   props: ["item"],
   data() {
     return {
-      showModal: false
+      showModal: false,
     };
   },
   components: {},
@@ -58,7 +62,7 @@ export default {
     navigateProductDetail(product) {
       this.$router.push({
         name: "productDetails",
-        params: { id: product._id }
+        params: { id: product._id },
       });
     },
 
@@ -76,9 +80,10 @@ export default {
 
     // this will trigger the parentComponent function
     updateEditProduct(product, id) {
+      console.log(id);
       this.$parent.editProduct(product);
-    }
+    },
   },
-  mounted() {}
+  mounted() {},
 };
 </script>

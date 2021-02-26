@@ -11,10 +11,9 @@ export default {
     return {};
   },
   methods: {
-    createShippingDetail() {}
-  }
+    createShippingDetail() {},
+  },
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="css"></style>

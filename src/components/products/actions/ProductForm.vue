@@ -68,7 +68,8 @@
 </template>
 <script>
 import axios from "axios";
-import {errorToaster} from "../../shared/service/ErrorHandler.js"
+import { errorToaster } from "../../shared/service/ErrorHandler.js";
+import _ from "lodash";
 export default {
   name: "productForm",
   props: ["product"],
@@ -79,24 +80,24 @@ export default {
       productSellerDummy: "",
       categories: [],
       sellers: [],
-      loading: false
+      loading: false,
     };
   },
   methods: {
     actionProduct(event) {
       event.preventDefault();
       this.$emit("submit-form", this.product);
-    }
+    },
   },
   created() {
     this.loading = true;
     axios
       .get(`${process.env.VUE_APP_BASE_URL}/products`)
-      .then(response => {
+      .then((response) => {
         // getting all products and getting the uniq value for
         // productCategory and returning the productCategory property only
         this.categories = _.uniqBy(
-          _.map(response.data, function(object) {
+          _.map(response.data, function (object) {
             return _.pick(object, ["productCategory"]);
           }),
           "productCategory"
@@ -106,7 +107,7 @@ export default {
         // getting all products and getting the uniq value for
         // productSeller and returning the productSeller property only
         this.sellers = _.uniqBy(
-          _.map(response.data, function(object) {
+          _.map(response.data, function (object) {
             return _.pick(object, ["productSeller"]);
           }),
           "productSeller"
@@ -116,26 +117,23 @@ export default {
 
         this.loading = false;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         errorToaster("Error while fetching products", "");
       });
-  }
+  },
 };
 </script>
-<style lang="scss">
-.productForm {
-  div {
-    text-align: start;
-  }
-  #productCU {
-    div {
-      text-align: start;
-    }
-    button {
-      text-align: center;
-    }
-  }
+<style lang="css">
+.productForm > div {
+  text-align: start;
+}
+.productForm #productCU div {
+  text-align: start;
+}
+
+.productForm #productCU button {
+  text-align: center;
 }
 
 .lds-dual-ring {

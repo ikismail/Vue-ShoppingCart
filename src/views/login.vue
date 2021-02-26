@@ -5,7 +5,13 @@
         <createAccount v-if="isSignUp"></createAccount>
 
         <form class="form-signin" @submit.prevent="login" v-if="!isSignUp">
-          <img class="mb-4" src="../assets/login-img.png" alt width="72" height="72">
+          <img
+            class="mb-4"
+            src="../assets/login-img.png"
+            alt
+            width="72"
+            height="72"
+          />
           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
           <label for="email" class="sr-only">Email address</label>
           <input
@@ -16,7 +22,7 @@
             placeholder="Email address"
             required
             autocomplete="email"
-          >
+          />
           <label for="password" class="sr-only">Password</label>
           <input
             type="password"
@@ -26,7 +32,7 @@
             placeholder="Password"
             required
             autocomplete="current-password"
-          >
+          />
           <p class="text-muted">
             <a href="javascript:;;">Forget password ?</a>
           </p>
@@ -50,14 +56,10 @@
 </template>
 <script>
 import CreateAccount from "@/components/CreateAccount";
-import { encryptUser } from "../components/shared/service/authService";
 import axios from "axios";
-import {
-  successToaster,
-  errorToaster
-} from "../components/shared/service/ErrorHandler.js";
+import { errorToaster } from "../components/shared/service/ErrorHandler.js";
 
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: "login",
@@ -67,7 +69,7 @@ export default {
       email: "",
       password: "",
       showLoader: false,
-      isSignUp: false
+      isSignUp: false,
     };
   },
   methods: {
@@ -82,24 +84,24 @@ export default {
       this.showLoader = true;
       const user = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
 
       axios
         .post(`${process.env.VUE_APP_BASE_URL}/login`, user)
-        .then(response => {
+        .then((response) => {
           this.showLoader = false;
           this.ADD_LOGGED_USER(response.data[0]);
           event.target.reset();
           this.$router.push(this.$route.query.from || "/");
         })
-        .catch(error => {
+        .catch((error) => {
           this.showLoader = false;
           errorToaster("Invalid Credentials", "");
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

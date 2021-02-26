@@ -1,14 +1,22 @@
 <template>
   <div class="create-account">
     <form class="form-signup" @submit.prevent="createAccount">
-      <img class="mb-4" src="../assets/create-account.svg" alt width="72" height="72">
+      <img
+        class="mb-4"
+        src="../assets/create-account.svg"
+        alt
+        width="72"
+        height="72"
+      />
       <h1 class="h3 mb-3 font-weight-normal">Create an account</h1>
       <div
         class="alert alert-danger"
         role="alert"
         v-for="(error, index) in errorMessage"
         :key="index"
-      >{{error}}</div>
+      >
+        {{ error }}
+      </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -19,7 +27,7 @@
             placeholder="First Name"
             v-model="user.firstName"
             required
-          >
+          />
           <div class="invalid-feedback">Valid first name is required.</div>
         </div>
         <div class="col-md-6 mb-3">
@@ -31,7 +39,7 @@
             placeholder="Last Name"
             value
             required
-          >
+          />
           <div class="invalid-feedback">Valid last name is required.</div>
         </div>
       </div>
@@ -45,7 +53,7 @@
             placeholder="Email address"
             value
             required
-          >
+          />
           <div class="invalid-feedback">Valid first name is required.</div>
         </div>
       </div>
@@ -59,7 +67,7 @@
             value
             v-model="user.password"
             required
-          >
+          />
           <div class="invalid-feedback">Valid first name is required.</div>
         </div>
       </div>
@@ -81,13 +89,13 @@ export default {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
       },
-      errorMessage: []
+      errorMessage: [],
     };
   },
   methods: {
-    createAccount(e) {
+    createAccount() {
       this.showLoader = true;
 
       this.errorMessage = [];
@@ -104,14 +112,14 @@ export default {
       if (this.errorMessage.length === 0) {
         axios
           .post(`${process.env.VUE_APP_BASE_URL}/users`, this.user)
-          .then(response => {
+          .then(() => {
             this.showLoader = false;
             successToaster(
               "Registered Successfully",
               "User Registered Successfully"
             );
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error);
             errorToaster(
               "Registeration Failed",
@@ -122,12 +130,12 @@ export default {
     },
 
     ValidateEmail(mail) {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
         return true;
       }
       return false;
-    }
-  }
+    },
+  },
 };
 </script>
 

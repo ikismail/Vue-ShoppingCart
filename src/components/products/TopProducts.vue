@@ -1,12 +1,12 @@
 <template>
   <div class="top-products">
     <div class="row">
-      <card-loader :loopCount="4" v-if="loading"/>
+      <card-loader :loopCount="4" v-if="loading" />
       <div class="col-md-3" v-for="(item, index) in topProducts" :key="index">
-        <card-template :item="item"/>
+        <card-template :item="item" />
       </div>
     </div>
-    <edit-product ref="editProduct"/>
+    <edit-product ref="editProduct" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       topProducts: [],
-      loading: false
+      loading: false,
     };
   },
   methods: {
@@ -35,21 +35,21 @@ export default {
       this.loading = true;
       axios
         .get(`${process.env.VUE_APP_BASE_URL}/top/products`)
-        .then(response => {
+        .then((response) => {
           this.loading = false;
           this.topProducts = response.data;
         })
-        .catch(error => {
+        .catch(() => {
           errorToaster(
             "The server encountered an unexpected condition.",
             "Internal Error 500"
           );
         });
-    }
+    },
   },
   created() {
     this.getTopProducts();
-  }
+  },
 };
 </script>
 

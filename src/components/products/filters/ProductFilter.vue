@@ -4,8 +4,13 @@
       <h4 class="d-flex mb-3">
         <span class="text-muted">Filters:</span>
       </h4>
-      <div class="form-group createProduct" v-if="loggedUser && loggedUser.isAdmin">
-        <button class="btn buttonGreen-outline" @click="openCreateModal">Create New Product</button>
+      <div
+        class="form-group createProduct"
+        v-if="loggedUser && loggedUser.isAdmin"
+      >
+        <button class="btn buttonGreen-outline" @click="openCreateModal">
+          Create New Product
+        </button>
       </div>
       <div class="form-group">
         <label for="filterPrdCty">By Category:</label>
@@ -19,7 +24,8 @@
             v-for="(category, index) in categories"
             :key="index"
             v-bind:value="category.productCategory"
-          >{{category.productCategory}}</option>
+            >{{ category.productCategory }}</option
+          >
         </select>
       </div>
       <div class="form-group">
@@ -34,7 +40,8 @@
             v-for="(seller, index) in sellers"
             :key="index"
             v-bind:value="seller.productSeller"
-          >{{seller.productSeller}}</option>
+            >{{ seller.productSeller }}</option
+          >
         </select>
       </div>
       <ul class="list-group">
@@ -45,7 +52,7 @@
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
     </div>
-    <create-product ref="createProduct"/>
+    <create-product ref="createProduct" />
   </div>
 </template>
 
@@ -61,7 +68,7 @@ export default {
     return {
       selectedCategory: "All",
       selectedSeller: "All",
-      showCreateProductModal: false
+      showCreateProductModal: false,
     };
   },
   methods: {
@@ -73,15 +80,13 @@ export default {
     // This method will trigger the function in createProduct Component
     openCreateModal() {
       this.$refs.createProduct.showModalForm();
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style lang="scss">
-.productFilter {
-  #prdfilter {
-    text-align: start !important;
-  }
+<style lang="css">
+.productFilter #prdfilter {
+  text-align: start !important;
 }
 </style>

@@ -2,7 +2,7 @@
   <div id="app" class="container">
     <main>
       <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav">
-        <img alt="Vue logo" src="./assets/logo.png" width="50px">
+        <img alt="Vue logo" src="./assets/logo.png" width="50px" />
         <button
           class="navbar-toggler"
           type="button"
@@ -20,7 +20,9 @@
               <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/products" class="nav-link">All Products</router-link>
+              <router-link to="/products" class="nav-link"
+                >All Products</router-link
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Pricing</a>
@@ -33,7 +35,7 @@
             <li class="nav-item">
               <router-link to="/cart" class="nav-link">
                 <i class="fa fa-shopping-cart mr-1">
-                  <span class="ml-1">{{this.cartProducts.length}}</span>
+                  <span class="ml-1">{{ this.cartProducts.length }}</span>
                 </i>
               </router-link>
             </li>
@@ -46,8 +48,12 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >{{this.loggedUser.firstName}}</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                >{{ this.loggedUser.firstName }}</a
+              >
+              <div
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
                 <router-link to="/" class="dropdown-item">Profile</router-link>
                 <!-- <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>-->
@@ -55,7 +61,8 @@
                   to="/"
                   class="dropdown-item text-danger"
                   @click.native="loc_logout"
-                >Logout</router-link>
+                  >Logout</router-link
+                >
               </div>
             </li>
             <li class="nav-item" v-if="!isLogged()">
@@ -64,7 +71,7 @@
           </ul>
         </div>
       </nav>
-      <router-view/>
+      <router-view />
     </main>
 
     <footer class="container-fluid footer text-left mt-3">
@@ -72,15 +79,35 @@
         Developed by:
         <strong>Mohammed Ismail</strong>
       </p>
-      <div style="float:right">
-        <a href="mailto:ikismail7@gmail.com" style="margin-right:10px">
-          <i class="fa fa-envelope-open" aria-hidden="true" style="font-size:20px"></i>
+      <div style="float: right">
+        <a href="mailto:ikismail7@gmail.com" style="margin-right: 10px">
+          <i
+            class="fa fa-envelope-open"
+            aria-hidden="true"
+            style="font-size: 20px"
+          ></i>
         </a>
-        <a href="https://github.com/ikismail" target="_blank" style="margin-right:10px">
-          <i class="fa fa-github" aria-hidden="true" style="font-size:20px"></i>
+        <a
+          href="https://github.com/ikismail"
+          target="_blank"
+          style="margin-right: 10px"
+        >
+          <i
+            class="fa fa-github"
+            aria-hidden="true"
+            style="font-size: 20px"
+          ></i>
         </a>
-        <a href="https://www.linkedin.com/in/ikismail7/" target="_blank" style="margin-right:10px">
-          <i class="fa fa-linkedin" aria-hidden="true" style="font-size:20px"></i>
+        <a
+          href="https://www.linkedin.com/in/ikismail7/"
+          target="_blank"
+          style="margin-right: 10px"
+        >
+          <i
+            class="fa fa-linkedin"
+            aria-hidden="true"
+            style="font-size: 20px"
+          ></i>
         </a>
       </div>
     </footer>
@@ -88,15 +115,15 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import {
   isLoggedIn,
-  getLoggedInUser
+  getLoggedInUser,
 } from "./components/shared/service/authService";
 export default {
   data() {
     return {
-      cartValue: 0
+      cartValue: 0,
     };
   },
   computed: mapState(["cartProducts", "loggedUser"]),
@@ -121,7 +148,7 @@ export default {
       localStorage.removeItem("_auth");
       this.$router.push("/");
       location.reload();
-    }
+    },
   },
   created() {
     this.getLocalProducts();
@@ -132,12 +159,12 @@ export default {
 
     console.log(process.env.NODE_ENV);
     console.log(process.env.VUE_APP_BASE_URL);
-  }
+  },
 };
 </script>
 
 
-<style lang="scss">
+<style lang="css">
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 #app {
@@ -149,13 +176,14 @@ export default {
 }
 #nav {
   padding: 15px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+}
+
+#nav > a {
+  font-weight: bold;
+  color: #2c3e50;
+  /* &.router-link-exact-active {
+    color: #42b983;
+  } */
 }
 
 html {

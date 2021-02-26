@@ -9,31 +9,35 @@
                 v-bind:src="product.productImage"
                 v-bind:alt="product.productName"
                 class="img-fluid rounded"
-                style="max-height: 700px; max-width: 127.135px;margin: auto"
-              >
+                style="max-height: 700px; max-width: 127.135px; margin: auto"
+              />
             </div>
-            <div class style="margin-top:15px">
+            <div class style="margin-top: 15px">
               <ul class="list-group mb-3">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <li
+                  class="list-group-item d-flex justify-content-between lh-condensed"
+                >
                   <div>
                     <h6 class="my-0">Product Price</h6>
                   </div>
-                  <span
-                    class="text-muted"
-                    style="color:crimson !important"
-                  >₹ {{product.productPrice}}</span>
+                  <span class="text-muted" style="color: crimson !important"
+                    >₹ {{ product.productPrice }}</span
+                  >
                 </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <li
+                  class="list-group-item d-flex justify-content-between lh-condensed"
+                >
                   <div>
                     <h6 class="my-0">Product Seller</h6>
                   </div>
-                  <span
-                    class="text-muted"
-                    style="color:crimson !important"
-                  >{{product.productSeller}}</span>
+                  <span class="text-muted" style="color: crimson !important">{{
+                    product.productSeller
+                  }}</span>
                 </li>
               </ul>
-              <button class="btn btn-primary" v-on:click="addToCart(product)">Add to Cart</button>
+              <button class="btn btn-primary" v-on:click="addToCart(product)">
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>
@@ -44,15 +48,15 @@
               <tbody>
                 <tr>
                   <th scope="row">Product Name</th>
-                  <td>{{product.productName}}</td>
+                  <td>{{ product.productName }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Product Description</th>
-                  <td>{{product.productDescription}}</td>
+                  <td>{{ product.productDescription }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Product Category</th>
-                  <td>{{product.productCategory}}</td>
+                  <td>{{ product.productCategory }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Product Rating</th>
@@ -69,12 +73,18 @@
       </div>
       <nav aria-label="breadcrumb ">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page">Similar Products</li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Similar Products
+          </li>
         </ol>
       </nav>
       <div class="row">
-        <div class="col-md-3 mt-3" v-for="(item, index) in similarProduct" :key="index">
-          <card-template :item="item"/>
+        <div
+          class="col-md-3 mt-3"
+          v-for="(item, index) in similarProduct"
+          :key="index"
+        >
+          <card-template :item="item" />
         </div>
       </div>
     </div>
@@ -83,7 +93,7 @@
 
 <script>
 import axios from "axios";
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 import CardTemplate from "../shared/CardTemplate";
 import { errorToaster } from "../../components/shared/service/ErrorHandler.js";
 
@@ -93,38 +103,39 @@ export default {
   data() {
     return {
       product: new Object(),
-      similarProduct: []
+      similarProduct: [],
     };
   },
   methods: {
     getSimilarProduct(productSeller) {
       axios
         .get(`${process.env.VUE_APP_BASE_URL}/products/similarProduct`, {
-          params: { productSeller: productSeller }
+          params: { productSeller: productSeller },
         })
-        .then(response => {
+        .then((response) => {
           this.similarProduct = response.data;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     ...mapMutations(["ADD_CART_LOCAL"]),
     addToCart(product) {
       this.ADD_CART_LOCAL(product);
-    }
+    },
   },
   created() {
     axios
       .get(`${process.env.VUE_APP_BASE_URL}/products/${this.$route.params.id}`)
-      .then(response => {
+      .then((response) => {
         this.product = response.data;
         const starTotal = 5;
         const starPercentage =
           (Number(this.product.productRating) / starTotal) * 100;
         // 3
-        const starPercentageRounded = `${Math.round(starPercentage / 10) *
-          10}%`;
+        const starPercentageRounded = `${
+          Math.round(starPercentage / 10) * 10
+        }%`;
         // 4
         document.querySelector(
           `.stars-inner`
@@ -133,11 +144,11 @@ export default {
         // Getting Similar Product
         this.getSimilarProduct(this.product.productSeller);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         errorToaster("Error while fetching similar products", "");
       });
-  }
+  },
 };
 </script>
 
