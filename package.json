@@ -24,7 +24,7 @@
     "nodemon": "^2.0.7",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.2",
-    "swiper": "^6.4.15",
+    "swiper": "^6.5.1",
     "toastr": "^2.1.4",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
