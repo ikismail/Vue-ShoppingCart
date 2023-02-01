@@ -20,7 +20,7 @@
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "lodash": "^4.17.21",
-    "mongoose": "^5.11.18",
+    "mongoose": "^5.13.15",
     "nodemon": "^2.0.7",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.7.2",
