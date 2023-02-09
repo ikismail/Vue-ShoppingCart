@@ -44,6 +44,9 @@
     "sass-loader": "^11.0.1",
     "vue-template-compiler": "^2.6.11"
   },
+    "engines" : { 
+    "node" : "12"
+  }
   "eslintConfig": {
     "root": true,
     "env": {
